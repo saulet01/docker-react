@@ -1,0 +1,39 @@
+sudo: required
+language: generic
+
+services:
+    - docker
+
+before_install:
+    - docker build -t saulet/docker-react -f Dockerfile.dev .
+
+script:
+    - docker run -e CI=true saulet/docker-react npm run test
+# deploy:
+#     provider: elasticbeanstalk
+#     region: "ap-southeast-1"
+#     app: "docker"
+#     env: "Dockerreact-env"
+#     bucket_name: "elasticbeanstalk-ap-southeast-1-212567022682Info"
+#     bucket_path: "docker"
+#     on:
+#         branch: main
+#     access_key_id: $AWS_ACCESS_KEY
+#     secret_access_key: $AWS_SECRET_KEY
+# deploy:
+#     provider: elasticbeanstalk
+#     region: "ap-southeast-1"
+#     app: "docker"
+#     env: "Dockerreact-env"
+#     bucket_name: "elasticbeanstalk-ap-southeast-1-212567022682Info"
+#     bucket_path: "docker"
+#     on:
+#         branch: master
+#     access_key_id: $AWS_ACCESS_KEY
+#     secret_access_key:
+#         secure: "$AWS_SECRET_KEY"
+# Access key ID
+# AKIATC7P3LRNIWXKKSNG
+
+# Secret access key
+# 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
